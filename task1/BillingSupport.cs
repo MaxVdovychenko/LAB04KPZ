@@ -1,17 +1,15 @@
 ﻿using System;
+
 class BillingSupport : SupportHandler
 {
     public override bool Handle()
     {
-        Console.WriteLine("Is your issue about payments? (yes/no)");
-        string input = Console.ReadLine();
-
-        if (input.ToLower() == "yes")
+        if (AskUser("Is your issue about payments?"))
         {
-            Console.WriteLine("Billing Support: Check your transaction history.");
+            Console.WriteLine("Billing Support: Check transactions.\n");
             return true;
         }
 
-        return next?.Handle() ?? false;
+        return next != null && next.Handle();
     }
 }

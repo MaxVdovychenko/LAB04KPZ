@@ -1,17 +1,15 @@
 ﻿using System;
+
 class BasicSupport : SupportHandler
 {
     public override bool Handle()
     {
-        Console.WriteLine("Is your issue about password reset? (yes/no)");
-        string input = Console.ReadLine();
-
-        if (input.ToLower() == "yes")
+        if (AskUser("Is your issue about password reset?"))
         {
-            Console.WriteLine("Basic Support: Reset your password using 'Forgot Password'.");
+            Console.WriteLine("Basic Support: Use 'Forgot Password'.\n");
             return true;
         }
 
-        return next?.Handle() ?? false;
+        return next != null && next.Handle();
     }
 }
